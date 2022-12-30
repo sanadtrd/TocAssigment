@@ -322,7 +322,6 @@ public class MainFrame extends javax.swing.JFrame {
         reader.close();
 
         
-   
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -332,6 +331,8 @@ public class MainFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+           
+           
         
         
         /* Set the Nimbus look and feel */
