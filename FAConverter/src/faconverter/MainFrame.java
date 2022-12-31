@@ -7,24 +7,52 @@ package faconverter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author sanad
- */
+
+
+
 public class MainFrame extends javax.swing.JFrame {
+    ArrayList<String> input = new ArrayList<>();
+    ArrayList<String> alphabet = new ArrayList<>();
+    ArrayList<String> states = new ArrayList<>();
+    ArrayList<String> finalStates = new ArrayList<>();
+    ArrayList<String[]> dArray = new ArrayList<>();
+    
+    private String finalRGText; //gets final text from text area
+    private String[] finalRG; // converts final text to an array
 
-    private String[] input = {"", "", "", "","", "", "", "","", "", "", ""};
+    private String currentLine;
+    
     private String displayImportText = "";
+    
+    private String initialState;
+    
+
+
 
     /**
      * Creates new form NewJFrame
      */
     public MainFrame() {
         initComponents();
+        outputTextArea.setEditable(false); 
     }
 
+    
+    private void clearAll() {
+    // code to be executed
+        inputTextArea.setText("");
+        outputTextArea.setText("");
+        input.clear();
+        alphabet.clear();
+        states.clear();
+        finalStates.clear();
+        dArray.clear();
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,17 +69,19 @@ public class MainFrame extends javax.swing.JFrame {
         line3Label = new javax.swing.JLabel();
         nameLabel1 = new javax.swing.JLabel();
         nameLabel2 = new javax.swing.JLabel();
-        nameLabel3 = new javax.swing.JLabel();
-        imageLabel1 = new javax.swing.JLabel();
-        imageLabel2 = new javax.swing.JLabel();
-        imageLabel3 = new javax.swing.JLabel();
         leaderLabel = new javax.swing.JLabel();
         participationLabel = new javax.swing.JLabel();
         partPercentLabel1 = new javax.swing.JLabel();
-        partPercentLabel2 = new javax.swing.JLabel();
-        partPercentLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        nameLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        nameLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        nameLabel6 = new javax.swing.JLabel();
+        partPercentLabel4 = new javax.swing.JLabel();
+        partPercentLabel5 = new javax.swing.JLabel();
         FunctionsPageFrame = new javax.swing.JPanel();
-        outputPanel = new javax.swing.JPanel();
         inputContainerPanel = new javax.swing.JScrollPane();
         inputTextArea = new javax.swing.JTextArea();
         importButton = new javax.swing.JButton();
@@ -61,6 +91,10 @@ public class MainFrame extends javax.swing.JFrame {
         rgToDFAButton = new javax.swing.JButton();
         rgToMinDFAButton = new javax.swing.JButton();
         testStringsButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        outputTextArea = new javax.swing.JTextPane();
         HelpPageFrame = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,120 +107,107 @@ public class MainFrame extends javax.swing.JFrame {
 
         nameLabel1.setText("Member 1");
 
-        nameLabel2.setText("Member 2");
-
-        nameLabel3.setText("Member 3");
-
-        imageLabel1.setBackground(new java.awt.Color(0, 153, 153));
-        imageLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imageLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/faconverter/images/42ff1608-aaae-4e45-ba1f-807715f64825.jpg"))); // NOI18N
-        imageLabel1.setText("Image 1");
-        imageLabel1.setToolTipText("");
-
-        imageLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imageLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/faconverter/images/869b1338-4c43-4e80-aaf5-01b207dcd124.jpg"))); // NOI18N
-        imageLabel2.setText("Image 2");
-        imageLabel2.setToolTipText("");
-
-        imageLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imageLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/faconverter/images/d51d87a8-16fc-402c-a7a2-dc7512b41fd7.jpg"))); // NOI18N
-        imageLabel3.setText("Image 3");
-        imageLabel3.setToolTipText("");
+        nameLabel2.setText("Ahmed Elsayed Mosatafa Sanad");
 
         leaderLabel.setText("Leader");
 
-        participationLabel.setText("Participation:");
+        partPercentLabel1.setText("Participation: X%");
 
-        partPercentLabel1.setText("X%");
+        jLabel1.setText("Abdulrahman Ibrahim  Obeidallah");
 
-        partPercentLabel2.setText("Y%");
+        nameLabel4.setText("Member 2");
 
-        partPercentLabel3.setText("Z%");
+        jLabel2.setText("1191302429");
+
+        jLabel3.setText("1181102208");
+
+        nameLabel5.setText("Yucedag Ahmet Baki");
+
+        jLabel4.setText("1201202756");
+
+        nameLabel6.setText("Member 3");
+
+        partPercentLabel4.setText("Participation: X%");
+
+        partPercentLabel5.setText("Participation: X%");
 
         javax.swing.GroupLayout HomePageFrameLayout = new javax.swing.GroupLayout(HomePageFrame);
         HomePageFrame.setLayout(HomePageFrameLayout);
         HomePageFrameLayout.setHorizontalGroup(
             HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomePageFrameLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(12, 12, 12)
+                .addComponent(participationLabel)
+                .addGap(30, 30, 30)
                 .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(line3Label)
-                    .addComponent(line2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(line1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
                     .addGroup(HomePageFrameLayout.createSequentialGroup()
-                        .addComponent(participationLabel)
-                        .addGap(55, 55, 55)
-                        .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HomePageFrameLayout.createSequentialGroup()
-                                .addComponent(partPercentLabel1)
-                                .addGap(201, 201, 201)
-                                .addComponent(partPercentLabel2)
-                                .addGap(177, 177, 177)
-                                .addComponent(partPercentLabel3))
-                            .addComponent(leaderLabel))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(HomePageFrameLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(HomePageFrameLayout.createSequentialGroup()
-                        .addComponent(imageLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(imageLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(imageLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HomePageFrameLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addComponent(nameLabel1)
-                        .addGap(169, 169, 169)
-                        .addComponent(nameLabel2)
-                        .addGap(150, 150, 150)
-                        .addComponent(nameLabel3)))
-                .addContainerGap(280, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(leaderLabel))
+                    .addComponent(jLabel2)
+                    .addComponent(partPercentLabel1)
+                    .addComponent(line3Label)
+                    .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(line1Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(line2Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+                .addGap(36, 36, 36)
+                .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nameLabel4)
+                    .addComponent(nameLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(partPercentLabel4))
+                .addGap(46, 46, 46)
+                .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(partPercentLabel5)
+                    .addComponent(nameLabel6)
+                    .addComponent(nameLabel5)
+                    .addComponent(jLabel4))
+                .addContainerGap(347, Short.MAX_VALUE))
         );
         HomePageFrameLayout.setVerticalGroup(
             HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomePageFrameLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(line1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(HomePageFrameLayout.createSequentialGroup()
+                        .addComponent(line1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(line2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(line3Label)
+                        .addGap(44, 44, 44)
+                        .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(participationLabel)
+                                .addComponent(partPercentLabel1))
+                            .addComponent(partPercentLabel4)))
+                    .addComponent(partPercentLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(line2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(line3Label)
-                .addGap(35, 35, 35)
-                .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameLabel1)
-                    .addComponent(nameLabel2)
-                    .addComponent(nameLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imageLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imageLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imageLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(leaderLabel)
-                .addGap(18, 18, 18)
-                .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(participationLabel)
-                    .addComponent(partPercentLabel1)
-                    .addComponent(partPercentLabel2)
-                    .addComponent(partPercentLabel3))
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(HomePageFrameLayout.createSequentialGroup()
+                        .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameLabel1)
+                            .addComponent(nameLabel4)
+                            .addComponent(leaderLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(nameLabel2)))
+                    .addGroup(HomePageFrameLayout.createSequentialGroup()
+                        .addComponent(nameLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nameLabel5)))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
 
         TabbedPaneContainer.addTab("Home", HomePageFrame);
-
-        outputPanel.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout outputPanelLayout = new javax.swing.GroupLayout(outputPanel);
-        outputPanel.setLayout(outputPanelLayout);
-        outputPanelLayout.setHorizontalGroup(
-            outputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 621, Short.MAX_VALUE)
-        );
-        outputPanelLayout.setVerticalGroup(
-            outputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 289, Short.MAX_VALUE)
-        );
 
         inputTextArea.setColumns(20);
         inputTextArea.setRows(5);
@@ -200,8 +221,18 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         rgToNFAButton.setText("NFA");
+        rgToNFAButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rgToNFAButtonActionPerformed(evt);
+            }
+        });
 
         rgToNFANoEpsilonButton.setText("NFA w/o ε ");
 
@@ -211,56 +242,58 @@ public class MainFrame extends javax.swing.JFrame {
 
         testStringsButton.setText("Test");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        jScrollPane3.setViewportView(outputTextArea);
+
         javax.swing.GroupLayout FunctionsPageFrameLayout = new javax.swing.GroupLayout(FunctionsPageFrame);
         FunctionsPageFrame.setLayout(FunctionsPageFrameLayout);
         FunctionsPageFrameLayout.setHorizontalGroup(
             FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionsPageFrameLayout.createSequentialGroup()
-                .addContainerGap(165, Short.MAX_VALUE)
-                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionsPageFrameLayout.createSequentialGroup()
-                        .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rgToMinDFAButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionsPageFrameLayout.createSequentialGroup()
-                                .addComponent(testStringsButton)
-                                .addGap(9, 9, 9))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionsPageFrameLayout.createSequentialGroup()
-                                .addComponent(rgToDFAButton)
-                                .addGap(8, 8, 8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionsPageFrameLayout.createSequentialGroup()
-                                .addComponent(rgToNFAButton)
-                                .addGap(5, 5, 5)))
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionsPageFrameLayout.createSequentialGroup()
-                        .addComponent(rgToNFANoEpsilonButton)
-                        .addGap(18, 18, 18)))
-                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(outputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, FunctionsPageFrameLayout.createSequentialGroup()
-                            .addGap(39, 39, 39)
-                            .addComponent(importButton)
-                            .addGap(70, 70, 70)
-                            .addComponent(clearButton))
-                        .addComponent(inputContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(92, 92, 92))
+                .addContainerGap(97, Short.MAX_VALUE)
+                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rgToNFANoEpsilonButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rgToDFAButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rgToNFAButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rgToMinDFAButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(testStringsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addComponent(inputContainerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                    .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(importButton)
+                        .addGap(70, 70, 70)
+                        .addComponent(clearButton)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(189, 189, 189))
         );
         FunctionsPageFrameLayout.setVerticalGroup(
             FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionsPageFrameLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(inputContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(importButton)
-                    .addComponent(clearButton))
+            .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
                 .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addComponent(outputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))
-                    .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                        .addGap(52, 52, 52)
+                        .addComponent(inputContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(importButton)
+                            .addComponent(clearButton))
+                        .addGap(18, 18, 18)
                         .addComponent(rgToNFAButton)
                         .addGap(18, 18, 18)
                         .addComponent(rgToNFANoEpsilonButton)
@@ -269,8 +302,13 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(rgToMinDFAButton)
                         .addGap(18, 18, 18)
-                        .addComponent(testStringsButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(testStringsButton))
+                    .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         TabbedPaneContainer.addTab("RG to FA", FunctionsPageFrame);
@@ -311,13 +349,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         try{
         BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
-        String line;
-        int index = 0;  
+        String line; 
         while((line = reader.readLine()) != null){
-            input[index] = line;
-            displayImportText += input[index] + "\n";     
+            input.add(line);
+            displayImportText += line + "\n";     
         }
-        System.out.println("displayImportText: " + displayImportText); 
+//        System.out.println("displayImportText: " + displayImportText); 
         inputTextArea.setText(displayImportText);
         reader.close();
 
@@ -327,11 +364,102 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_importButtonActionPerformed
 
+    //convert RG To NFA
+    private void rgToNFAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgToNFAButtonActionPerformed
+        
+        //fix when NFA is clicked Again:
+        String prevImport = inputTextArea.getText();
+        clearAll();
+        inputTextArea.setText(prevImport);
+        
+        finalRGText =  inputTextArea.getText(); // get final text form text Area
+        finalRG = finalRGText.split("\n"); // convert it to array
+        
+        for (String finalRG1 : finalRG) { // loop in array
+            currentLine = finalRG1;
+            // Get State
+            String state = currentLine.split("→")[0];
+            states.add(state); 
+            
+            // Get alphabet and other
+            String dValues = currentLine.split("→")[1];
+            dArray.add(dValues.split("\\|"));
+            
+            String[] y = dValues.split("\\|"); // 0A, 1B
+            
+            for (String y1 : y) {
+                String first = String.valueOf(y1.charAt(0)); //0
+                boolean contains = alphabet.contains(first);
+                boolean isFinal = y1.equals("ε");
+                
+                if (y1.length() > 1) {
+                    if(!contains){
+                        alphabet.add(first);
+                    }
+                } else if(isFinal){
+                    finalStates.add(state);
+                    if(!contains){
+                        alphabet.add(first);
+                    }
+                    
+                }
+            }
+        }
+        
+         System.out.println("alphabet: " + alphabet);
+         System.out.println("finalStates: " + finalStates);
+         System.out.println("states: " + states);
+
+         //Check alphabet condition and Print Value
+         
+         if(alphabet.size() < 3){
+              JOptionPane.showMessageDialog(rootPane,"Alphabet should cannot be less than 3 , including ε!");
+         }else{
+             //Output:
+             
+             //Start
+             String outputTextAreaText = "M=(Q, ∑, δ, p0, F)\n";
+             
+             //States:
+             outputTextAreaText += "Q=";
+             String s = states.toString().replace('[', '{').replace(']', '}')+"\n";
+             outputTextAreaText += s;
+             
+            //Alphabet:
+             outputTextAreaText += "Σ=";
+             String a = alphabet.toString().replace('[', '{').replace(']', '}').replace(", ε","") + "\n";
+             outputTextAreaText += a;
+             
+             outputTextAreaText += "𝛿:Q x Σε → Pow(Q)\n";
+        
+             initialState = states.get(0);
+             outputTextAreaText += "p0="+initialState+"\n";
+             
+             //Final States:
+             outputTextAreaText += "Q=";
+             String f = finalStates.toString().replace('[', '{').replace(']', '}')+"\n";
+             outputTextAreaText += f;
+    
+             outputTextArea.setText(outputTextAreaText); 
+             
+         }
+           
+           
+         
+         
+  
+    }//GEN-LAST:event_rgToNFAButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        // TODO add your handling code here:
+        clearAll();
+    }//GEN-LAST:event_clearButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-           
+         
            
         
         
@@ -367,23 +495,29 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel HomePageFrame;
     private javax.swing.JTabbedPane TabbedPaneContainer;
     private javax.swing.JButton clearButton;
-    private javax.swing.JLabel imageLabel1;
-    private javax.swing.JLabel imageLabel2;
-    private javax.swing.JLabel imageLabel3;
     private javax.swing.JButton importButton;
     private javax.swing.JScrollPane inputContainerPanel;
     private javax.swing.JTextArea inputTextArea;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel leaderLabel;
     private javax.swing.JLabel line1Label;
     private javax.swing.JLabel line2Label;
     private javax.swing.JLabel line3Label;
     private javax.swing.JLabel nameLabel1;
     private javax.swing.JLabel nameLabel2;
-    private javax.swing.JLabel nameLabel3;
-    private javax.swing.JPanel outputPanel;
+    private javax.swing.JLabel nameLabel4;
+    private javax.swing.JLabel nameLabel5;
+    private javax.swing.JLabel nameLabel6;
+    private javax.swing.JTextPane outputTextArea;
     private javax.swing.JLabel partPercentLabel1;
-    private javax.swing.JLabel partPercentLabel2;
-    private javax.swing.JLabel partPercentLabel3;
+    private javax.swing.JLabel partPercentLabel4;
+    private javax.swing.JLabel partPercentLabel5;
     private javax.swing.JLabel participationLabel;
     private javax.swing.JButton rgToDFAButton;
     private javax.swing.JButton rgToMinDFAButton;

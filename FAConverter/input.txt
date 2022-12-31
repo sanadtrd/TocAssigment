@@ -1,4 +1,3 @@
-A-0B|3C
-B-1J|A
-C--y
-X-x
+A→1b|0C
+B→ε
+C→B|1A
