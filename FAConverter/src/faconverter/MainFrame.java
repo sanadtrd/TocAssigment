@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -45,6 +47,9 @@ public class MainFrame extends javax.swing.JFrame {
     
     private void clearAll() {
     // code to be executed
+        DefaultTableModel table1 = (DefaultTableModel) jTable1.getModel();
+         table1.setColumnCount(0);
+        table1.setRowCount(0);
         inputTextArea.setText("");
         outputTextArea.setText("");
         input.clear();
@@ -52,6 +57,21 @@ public class MainFrame extends javax.swing.JFrame {
         states.clear();
         finalStates.clear();
         dArray.clear();
+  }
+    
+    
+    private String setFormatter(String printValue) {
+       
+        String output;
+        
+        if(printValue.length() == 1){
+            return "{" + printValue + "}";
+        }else{
+             ArrayList<String> list = new ArrayList<>(Arrays.asList(printValue.split("(?!^)")));
+             output = list.toString().replace("[","{").replace("]","}");
+        }
+        
+        return output;
   }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -244,13 +264,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -366,10 +383,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     //convert RG To NFA
     private void rgToNFAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgToNFAButtonActionPerformed
-        
-        //fix when NFA is clicked Again:
-        String prevImport = inputTextArea.getText();
-        clearAll();
+         DefaultTableModel table1 = (DefaultTableModel) jTable1.getModel(); //table initializer
+         String prevImport = inputTextArea.getText();
+         
+         //Resets Everything when button is pressed:
+         clearAll();
+
         inputTextArea.setText(prevImport);
         
         finalRGText =  inputTextArea.getText(); // get final text form text Area
@@ -406,15 +425,16 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
         
-         System.out.println("alphabet: " + alphabet);
-         System.out.println("finalStates: " + finalStates);
-         System.out.println("states: " + states);
+//         System.out.println("alphabet: " + alphabet);
+//         System.out.println("finalStates: " + finalStates);
+//         System.out.println("states: " + states);
 
          //Check alphabet condition and Print Value
          
          if(alphabet.size() < 3){
               JOptionPane.showMessageDialog(rootPane,"Alphabet should cannot be less than 3 , including ε!");
          }else{
+
              //Output:
              
              //Start
@@ -442,6 +462,72 @@ public class MainFrame extends javax.swing.JFrame {
     
              outputTextArea.setText(outputTextAreaText); 
              
+             
+             //Print in table:-----------------------------
+             
+             
+             //Print Columns:-----------
+             table1.addColumn("𝛿NFA");
+             for(int i = 0; i< alphabet.size(); i++){
+                  table1.addColumn(alphabet.get(i)); // add alphabet columns
+             }
+             
+   
+             //Print Rows:--------------
+ 
+             for(int z = 0; z< states.size(); z++){
+                 
+               String currentState = states.get(z);// A
+               String [] currentDvalues = dArray.get(z); // [0A,1B]
+               
+               String[] rowPrint = new String[alphabet.size()+1];
+               
+               if(z == 0){
+                   rowPrint[0]= ">" + currentState;
+               }else{
+                  rowPrint[0]=currentState;
+               }
+               
+               for(int i = 0; i< alphabet.size(); i++){
+                    String currentValue = "";
+                    String currentAlphabet = alphabet.get(i); // holds current alphabet 0
+
+                  for(int v = 0; v< currentDvalues.length; v++){ //Loop in state Values
+                      if(currentDvalues[v].length() > 1){ // Current value : 0A
+                          String currentdValue = String.valueOf(currentDvalues[v].charAt(0)); // holds 0
+                          if(currentdValue.equals(currentAlphabet)){  
+                              currentValue += String.valueOf(currentDvalues[v].charAt(1));
+                          }
+
+                      }else{ //B
+                          if(currentAlphabet.equals("ε")){
+                              String epCheck = String.valueOf(currentDvalues[v].charAt(0));
+                              if(!epCheck.equals("ε")){
+                                  currentValue += String.valueOf(currentDvalues[v].charAt(0));
+                              }else{
+                                   rowPrint[0]= "*" + currentState;
+                              }
+                               
+                          }
+                      }
+                  }
+
+                  //Add current value to row
+                  if(currentValue.equals("")){
+                      rowPrint[i+1]= "Ø";
+                  }else{
+                      rowPrint[i+1]= setFormatter(currentValue);
+                  }
+                  
+                   
+                }
+               
+               
+               table1.addRow(rowPrint);
+                  
+             }
+                             
+
          }
            
            
@@ -451,7 +537,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_rgToNFAButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-        // TODO add your handling code here:
+
         clearAll();
     }//GEN-LAST:event_clearButtonActionPerformed
 
