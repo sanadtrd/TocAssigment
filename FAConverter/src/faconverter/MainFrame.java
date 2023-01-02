@@ -115,6 +115,8 @@ public class MainFrame extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         outputTextArea = new javax.swing.JTextPane();
+        insertArrowButton = new javax.swing.JButton();
+        insertEpsilonButton = new javax.swing.JButton();
         HelpPageFrame = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -274,12 +276,26 @@ public class MainFrame extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(outputTextArea);
 
+        insertArrowButton.setText("→");
+        insertArrowButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertArrowButtonActionPerformed(evt);
+            }
+        });
+
+        insertEpsilonButton.setText("ε");
+        insertEpsilonButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertEpsilonButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FunctionsPageFrameLayout = new javax.swing.GroupLayout(FunctionsPageFrame);
         FunctionsPageFrame.setLayout(FunctionsPageFrameLayout);
         FunctionsPageFrameLayout.setHorizontalGroup(
             FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionsPageFrameLayout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
+                .addContainerGap(105, Short.MAX_VALUE)
                 .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(rgToNFANoEpsilonButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rgToDFAButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -296,7 +312,11 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addComponent(clearButton)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(insertEpsilonButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(insertArrowButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(189, 189, 189))
         );
         FunctionsPageFrameLayout.setVerticalGroup(
@@ -321,11 +341,15 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(testStringsButton))
                     .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
-                        .addGap(290, 290, 290)
+                        .addGap(108, 108, 108)
+                        .addComponent(insertArrowButton)
+                        .addGap(35, 35, 35)
+                        .addComponent(insertEpsilonButton)
+                        .addGap(101, 101, 101)
                         .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         TabbedPaneContainer.addTab("RG to FA", FunctionsPageFrame);
@@ -541,6 +565,14 @@ public class MainFrame extends javax.swing.JFrame {
         clearAll();
     }//GEN-LAST:event_clearButtonActionPerformed
 
+    private void insertArrowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertArrowButtonActionPerformed
+        inputTextArea.append("→");
+    }//GEN-LAST:event_insertArrowButtonActionPerformed
+
+    private void insertEpsilonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertEpsilonButtonActionPerformed
+        inputTextArea.append("ε");
+    }//GEN-LAST:event_insertEpsilonButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -584,6 +616,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton importButton;
     private javax.swing.JScrollPane inputContainerPanel;
     private javax.swing.JTextArea inputTextArea;
+    private javax.swing.JButton insertArrowButton;
+    private javax.swing.JButton insertEpsilonButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
