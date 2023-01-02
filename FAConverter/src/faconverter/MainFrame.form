@@ -241,13 +241,15 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="105" max="32767" attributes="0"/>
+                      <EmptySpace pref="97" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="rgToNFANoEpsilonButton" alignment="0" max="32767" attributes="0"/>
                           <Component id="rgToDFAButton" max="32767" attributes="0"/>
                           <Component id="rgToNFAButton" max="32767" attributes="0"/>
                           <Component id="rgToMinDFAButton" alignment="0" max="32767" attributes="0"/>
                           <Component id="testStringsButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="arrowButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="epsilonButton" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -261,13 +263,7 @@
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" min="-2" pref="286" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="insertEpsilonButton" alignment="0" max="32767" attributes="0"/>
-                              <Component id="insertArrowButton" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="jScrollPane2" min="-2" pref="286" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -275,9 +271,9 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Component id="inputContainerPanel" min="-2" pref="179" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -296,18 +292,18 @@
                               <Component id="testStringsButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
-                              <Component id="insertArrowButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="insertEpsilonButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="arrowButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="epsilonButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jScrollPane3" pref="231" max="32767" attributes="0"/>
                                   <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="146" max="32767" attributes="0"/>
+                      <EmptySpace pref="135" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -356,6 +352,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="NFA w/o &#x3b5; "/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rgToNFANoEpsilonButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="rgToDFAButton">
               <Properties>
@@ -405,20 +404,20 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="insertArrowButton">
+            <Component class="javax.swing.JButton" name="arrowButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x2192;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertArrowButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="arrowButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="insertEpsilonButton">
+            <Component class="javax.swing.JButton" name="epsilonButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x3b5;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertEpsilonButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="epsilonButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
