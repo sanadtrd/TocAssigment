@@ -41,7 +41,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        outputTextArea.setEditable(false); 
+        outputTextArea.setEditable(false);
+        helpTextArea.setEditable(false);
     }
 
     
@@ -213,6 +214,8 @@ public class MainFrame extends javax.swing.JFrame {
         arrowButton = new javax.swing.JButton();
         epsilonButton = new javax.swing.JButton();
         HelpPageFrame = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        helpTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -359,6 +362,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         rgToDFAButton.setText("DFA");
+        rgToDFAButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rgToDFAButtonActionPerformed(evt);
+            }
+        });
 
         rgToMinDFAButton.setText("Min DFA");
 
@@ -452,15 +460,20 @@ public class MainFrame extends javax.swing.JFrame {
 
         TabbedPaneContainer.addTab("RG to FA", FunctionsPageFrame);
 
+        helpTextArea.setColumns(20);
+        helpTextArea.setRows(5);
+        helpTextArea.setText("How to use the program:\n\n1.RG to NFA:\n    - In order for the program to convert RG to NFA the user have to:\n    - Enter min 3 alphabet including epsilon (ε) example: a,b,ε\n    - Enter each state in new line and State Letter must be followed by arrow (User can use arrow button on left side) then directions\n    - example: R (arrow) bR|aS (if user wishes to enter multiple directions | must be used)\n    - User must click Convert RG To NFA button\n\n2. RG to NFA without epsilon:\n    - In order for the program to convert RG to NFA without ε the user have to:\n    - Enter min 3 alphabet including epsilon (ε) example: a,b,ε\n    - Enter each state in new line and State Letter must be followed by arrow (User can use arrow button on left side) then directions\n    - example: R (arrow) bR|aS (if user wishes to enter multiple directions | must be used)\n    - User must click To NFA without ε button\n\n5. Check strings for RG:\n    - The user needs to enter the regular grammar as right regular, the transition symbol that should be used is (arrow) and epsilon (ε)\n    - Using only the regular grammar alphabet, the user can enter the strings to check, minimum 5 strings.");
+        jScrollPane1.setViewportView(helpTextArea);
+
         javax.swing.GroupLayout HelpPageFrameLayout = new javax.swing.GroupLayout(HelpPageFrame);
         HelpPageFrame.setLayout(HelpPageFrameLayout);
         HelpPageFrameLayout.setHorizontalGroup(
             HelpPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 989, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
         );
         HelpPageFrameLayout.setVerticalGroup(
             HelpPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 664, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
         );
 
         TabbedPaneContainer.addTab("Help", HelpPageFrame);
@@ -719,6 +732,12 @@ public class MainFrame extends javax.swing.JFrame {
         inputTextArea.setText(currentText+"ε");
     }//GEN-LAST:event_epsilonButtonActionPerformed
 
+    private void rgToDFAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgToDFAButtonActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_rgToDFAButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -761,6 +780,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton arrowButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton epsilonButton;
+    private javax.swing.JTextArea helpTextArea;
     private javax.swing.JButton importButton;
     private javax.swing.JScrollPane inputContainerPanel;
     private javax.swing.JTextArea inputTextArea;
@@ -768,6 +788,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;

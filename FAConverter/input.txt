@@ -1,4 +1,3 @@
-A→aR
-R→bR|aS
-S→bT
-T→R|ε
+A→1B|0C
+B→ε
+C→B|1A
