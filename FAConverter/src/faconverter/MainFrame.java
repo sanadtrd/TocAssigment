@@ -26,12 +26,18 @@ public class MainFrame extends javax.swing.JFrame {
     
     private String finalRGText; //gets final text from text area
     private String[] finalRG; // converts final text to an array
+    
+    
+    
+    
 
     private String currentLine;
     
     private String displayImportText = "";
     
     private String initialState;
+    
+    
     
 
 
@@ -41,6 +47,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        stringTextArea.setVisible(false);
+        checkStringButton.setVisible(false);
         outputTextArea.setEditable(false);
         helpTextArea.setEditable(false);
     }
@@ -197,6 +205,9 @@ public class MainFrame extends javax.swing.JFrame {
         nameLabel6 = new javax.swing.JLabel();
         partPercentLabel4 = new javax.swing.JLabel();
         partPercentLabel5 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         FunctionsPageFrame = new javax.swing.JPanel();
         inputContainerPanel = new javax.swing.JScrollPane();
         inputTextArea = new javax.swing.JTextArea();
@@ -213,11 +224,15 @@ public class MainFrame extends javax.swing.JFrame {
         outputTextArea = new javax.swing.JTextPane();
         arrowButton = new javax.swing.JButton();
         epsilonButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        stringTextArea = new javax.swing.JTextArea();
+        checkStringButton = new javax.swing.JButton();
         HelpPageFrame = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         helpTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1020, 800));
 
         line1Label.setText("TIC2151 Theory of Computation");
 
@@ -251,6 +266,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         partPercentLabel5.setText("Participation: X%");
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/faconverter/images/ahmed_1_150x150.jpeg"))); // NOI18N
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/faconverter/images/abdul_150x150.jpeg"))); // NOI18N
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/faconverter/images/ahmed_1_150x150.jpeg"))); // NOI18N
+
         javax.swing.GroupLayout HomePageFrameLayout = new javax.swing.GroupLayout(HomePageFrame);
         HomePageFrame.setLayout(HomePageFrameLayout);
         HomePageFrameLayout.setHorizontalGroup(
@@ -270,20 +291,23 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(line3Label)
                     .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(line1Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(line2Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+                        .addComponent(line2Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                    .addComponent(jLabel6))
                 .addGap(36, 36, 36)
                 .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
                     .addComponent(nameLabel4)
                     .addComponent(nameLabel2)
                     .addComponent(jLabel3)
                     .addComponent(partPercentLabel4))
                 .addGap(46, 46, 46)
                 .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
                     .addComponent(partPercentLabel5)
                     .addComponent(nameLabel6)
                     .addComponent(nameLabel5)
                     .addComponent(jLabel4))
-                .addContainerGap(347, Short.MAX_VALUE))
+                .addContainerGap(10124, Short.MAX_VALUE))
         );
         HomePageFrameLayout.setVerticalGroup(
             HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,7 +348,12 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nameLabel5)))
-                .addContainerGap(383, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addGroup(HomePageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         TabbedPaneContainer.addTab("Home", HomePageFrame);
@@ -371,6 +400,11 @@ public class MainFrame extends javax.swing.JFrame {
         rgToMinDFAButton.setText("Min DFA");
 
         testStringsButton.setText("Test");
+        testStringsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testStringsButtonActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -398,12 +432,23 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        stringTextArea.setColumns(20);
+        stringTextArea.setRows(5);
+        jScrollPane4.setViewportView(stringTextArea);
+
+        checkStringButton.setText("Check Strings");
+        checkStringButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkStringButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FunctionsPageFrameLayout = new javax.swing.GroupLayout(FunctionsPageFrame);
         FunctionsPageFrame.setLayout(FunctionsPageFrameLayout);
         FunctionsPageFrameLayout.setHorizontalGroup(
             FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionsPageFrameLayout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(rgToNFANoEpsilonButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rgToDFAButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -412,18 +457,23 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(testStringsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(arrowButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(epsilonButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22)
-                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3)
-                    .addComponent(inputContainerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(60, 60, 60)
                         .addComponent(importButton)
-                        .addGap(70, 70, 70)
-                        .addComponent(clearButton)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(189, 189, 189))
+                        .addGap(88, 88, 88)
+                        .addComponent(clearButton))
+                    .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3)
+                            .addComponent(inputContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))))
+                .addGap(51, 51, 51)
+                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(checkStringButton)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(48, 48, 48))
         );
         FunctionsPageFrameLayout.setVerticalGroup(
             FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,12 +481,26 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
-                        .addComponent(inputContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inputContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4))
+                        .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(importButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionsPageFrameLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(checkStringButton)
+                                    .addComponent(clearButton)))))
+                    .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(arrowButton)
                         .addGap(18, 18, 18)
-                        .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(importButton)
-                            .addComponent(clearButton))
-                        .addGap(18, 18, 18)
+                        .addComponent(epsilonButton)))
+                .addGap(18, 18, 18)
+                .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
                         .addComponent(rgToNFAButton)
                         .addGap(18, 18, 18)
                         .addComponent(rgToNFANoEpsilonButton)
@@ -446,16 +510,9 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(rgToMinDFAButton)
                         .addGap(18, 18, 18)
                         .addComponent(testStringsButton))
-                    .addGroup(FunctionsPageFrameLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(arrowButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(epsilonButton)
-                        .addGap(129, 129, 129)
-                        .addGroup(FunctionsPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addContainerGap(135, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         TabbedPaneContainer.addTab("RG to FA", FunctionsPageFrame);
@@ -469,7 +526,7 @@ public class MainFrame extends javax.swing.JFrame {
         HelpPageFrame.setLayout(HelpPageFrameLayout);
         HelpPageFrameLayout.setHorizontalGroup(
             HelpPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 10794, Short.MAX_VALUE)
         );
         HelpPageFrameLayout.setVerticalGroup(
             HelpPageFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,231 +551,29 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void importButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importButtonActionPerformed
+    private void checkStringButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkStringButtonActionPerformed
         // TODO add your handling code here:
-        displayImportText="";
-        inputTextArea.setText(displayImportText);
 
-        try{
-        BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
-        String line; 
-        while((line = reader.readLine()) != null){
-            input.add(line);
-            displayImportText += line + "\n";     
+        //get Strings:
+        String[] stringsToCheck =  stringTextArea.getText().split("\n");
+        boolean[] stringsToCheckFlags  = new boolean[stringsToCheck.length];
+
+        if(InputTextAreaChecker()){
+            if(stringsToCheck.length < 5){
+                JOptionPane.showMessageDialog(rootPane,"You have to enter minimum 5 strings at once!!");
+
+            }else{ //strings are okay
+
+            }
+
         }
-//        System.out.println("displayImportText: " + displayImportText); 
-        inputTextArea.setText(displayImportText);
-        reader.close();
+    }//GEN-LAST:event_checkStringButtonActionPerformed
 
-        
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_importButtonActionPerformed
-
-    //convert RG To NFA
-    private void rgToNFAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgToNFAButtonActionPerformed
-         DefaultTableModel table1 = (DefaultTableModel) jTable1.getModel(); //table initializer
-         
-         if(InputTextAreaChecker()){
-            
-             //Print in table:-----------------------------
-             
-             
-             //Print Columns:-----------
-             table1.addColumn("𝛿NFA");
-             for(int i = 0; i< alphabet.size(); i++){
-                  table1.addColumn(alphabet.get(i)); // add alphabet columns
-             }
-             
-   
-             //Print Rows:--------------
- 
-             for(int z = 0; z< states.size(); z++){
-                 
-               String currentState = states.get(z);// A
-               String [] currentDvalues = dArray.get(z); // [0A,1B]
-               
-               String[] rowPrint = new String[alphabet.size()+1];
-               
-               if(z == 0){
-                   rowPrint[0]= ">" + currentState;
-               }else{
-                  rowPrint[0]=currentState;
-               }
-               
-               for(int i = 0; i< alphabet.size(); i++){
-                    String currentValue = "";
-                    String currentAlphabet = alphabet.get(i); // holds current alphabet 0
-
-                  for(int v = 0; v< currentDvalues.length; v++){ //Loop in state Values
-                      if(currentDvalues[v].length() > 1){ // Current value : 0A
-                          String currentdValue = String.valueOf(currentDvalues[v].charAt(0)); // holds 0
-                          if(currentdValue.equals(currentAlphabet)){  
-                              currentValue += String.valueOf(currentDvalues[v].charAt(1));
-                          }
-
-                      }else{ //B
-                          if(currentAlphabet.equals("ε")){
-                              String epCheck = String.valueOf(currentDvalues[v].charAt(0));
-                              if(!epCheck.equals("ε")){
-                                  currentValue += String.valueOf(currentDvalues[v].charAt(0));
-                              }else{
-                                   rowPrint[0]= "*" + currentState;
-                              }
-                               
-                          }
-                      }
-                  }
-
-                  //Add current value to row
-                  if(currentValue.equals("")){
-                      rowPrint[i+1]= "Ø";
-                  }else{
-                      rowPrint[i+1]= setFormatter(currentValue);
-                  }
-                  
-                   
-                }
-               
-               
-               table1.addRow(rowPrint);
-                  
-             }
-                             
-
-         }
-           
-
-    }//GEN-LAST:event_rgToNFAButtonActionPerformed
-
-    
-
-    
-    
-    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-
-        clearAll();
-    }//GEN-LAST:event_clearButtonActionPerformed
-
-    private void rgToNFANoEpsilonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgToNFANoEpsilonButtonActionPerformed
+    private void epsilonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_epsilonButtonActionPerformed
         // TODO add your handling code here:
-        
-        
-         DefaultTableModel table1 = (DefaultTableModel) jTable1.getModel(); //table initializer
-         
-         if(InputTextAreaChecker()){
-             
-            ArrayList<String> alphabetNew = new ArrayList<>();
-         
-            alphabetNew =  alphabet; 
-            alphabetNew.remove("ε");
-         
-             //Print Columns:-----------
-             table1.addColumn("𝛿NFA");
-             for(int i = 0; i< alphabetNew.size(); i++){
-                  table1.addColumn(alphabetNew.get(i)); // add alphabet columns
-             }
-             
-   
-             //Print Rows:--------------
- 
-             for(int z = 0; z< states.size(); z++){
-                 
-               String currentState = states.get(z);// A
-               String [] currentDvalues = dArray.get(z); // [0A,1B]
-               
-               String[] rowPrint = new String[alphabet.size()+1];
-               
-               if(z == 0){
-                   rowPrint[0]= ">" + currentState;
-               }else{
-                  rowPrint[0]=currentState;
-               }
-               
-               for(int i = 0; i< alphabetNew.size(); i++){
-                    String currentValue = "";
-                    String currentAlphabet = alphabetNew.get(i); // holds current alphabet 0
-                    
-                  for(int v = 0; v< currentDvalues.length; v++){ //Loop in state Values
-                      if(currentDvalues[v].length() > 1){ // Current value : 0A
-                          String currentdValue = String.valueOf(currentDvalues[v].charAt(0)); // holds 0
-                          if(currentdValue.equals(currentAlphabet)){  
-                              currentValue += String.valueOf(currentDvalues[v].charAt(1));    
-                              
-                              // check B if it has the alhpabet if yes add it 
-                              ArrayList<String> valueOfState = new ArrayList<>(); //holds B values [0A|C]
-                              String newState = String.valueOf(currentDvalues[v].charAt(1));
- 
-                              int cIndex = states.indexOf(newState);
-                              String [] newDArray = dArray.get(cIndex);
-                              for(String value:newDArray) {valueOfState.add(value);}
-
-                              // check if b has the value and include it 
-                              for(int u = 0; u < valueOfState.size(); u++){
-                                if(valueOfState.get(u).length() == 1 && !valueOfState.get(u).equals("ε")){
-                                    currentValue += valueOfState.get(u);
-                                }
-                              }
-
-                          }
- 
-                      }else{ //B or ε
-                          
-                        String epCheck = String.valueOf(currentDvalues[v].charAt(0));
-                          if(!epCheck.equals("ε")){
-                              // check B if it has the alhpabet if yes add it 
-                              ArrayList<String> valueOfState = new ArrayList<>(); //holds B values [0A|C]
-                              String newState = String.valueOf(currentDvalues[v].charAt(0));
- 
-                              int cIndex = states.indexOf(newState);
-                              String [] newDArray = dArray.get(cIndex);
-                              for(String value:newDArray) {valueOfState.add(value);}
-
-                              System.out.println("valueOfState: " + valueOfState);
-                              // check if b has the value and include it 
-                              for(int u = 0; u < valueOfState.size(); u++){
-                                if(valueOfState.get(u).length() == 1 && !valueOfState.get(u).equals("ε")){
-                                    currentValue += valueOfState.get(u);
-                                }else{
-                                    String newCheck = String.valueOf(valueOfState.get(u).charAt(0));
-                                    System.out.println("newCheck: " + newCheck);
-                                    System.out.println("currentAlphabet: " + currentAlphabet);
-                                    if(newCheck.equals(currentAlphabet) ){
-                                      currentValue += String.valueOf(valueOfState.get(u).charAt(1));
-                                    }
-                                    
-                                }
-                              }
-                              
-                            //currentValue += String.valueOf(currentDvalues[v].charAt(0));
- 
-                          }else{
-                            rowPrint[0]= "*" + currentState;
-                          }
-                          
-                      }
-                  }
-
-                  //Add current value to row
-                  if(currentValue.equals("")){
-                      rowPrint[i+1]= "Ø";
-                  }else{
-                      rowPrint[i+1]= setFormatter(currentValue);
-                  }
-                  
-                   
-                }
-               
-               
-               table1.addRow(rowPrint);
-                  
-             }
-                             
-
-         }
-        
-    }//GEN-LAST:event_rgToNFANoEpsilonButtonActionPerformed
+        String currentText = inputTextArea.getText();
+        inputTextArea.setText(currentText+"ε");
+    }//GEN-LAST:event_epsilonButtonActionPerformed
 
     private void arrowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrowButtonActionPerformed
         // TODO add your handling code here:
@@ -726,18 +581,233 @@ public class MainFrame extends javax.swing.JFrame {
         inputTextArea.setText(currentText+"→");
     }//GEN-LAST:event_arrowButtonActionPerformed
 
-    private void epsilonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_epsilonButtonActionPerformed
-        // TODO add your handling code here:
-          String currentText = inputTextArea.getText();
-        inputTextArea.setText(currentText+"ε");
-    }//GEN-LAST:event_epsilonButtonActionPerformed
-
     private void rgToDFAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgToDFAButtonActionPerformed
         // TODO add your handling code here:
-        
-        
+
     }//GEN-LAST:event_rgToDFAButtonActionPerformed
 
+    private void rgToNFANoEpsilonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgToNFANoEpsilonButtonActionPerformed
+        // TODO add your handling code here:
+
+        DefaultTableModel table1 = (DefaultTableModel) jTable1.getModel(); //table initializer
+
+        if(InputTextAreaChecker()){
+
+            ArrayList<String> alphabetNew = new ArrayList<>();
+
+            alphabetNew =  alphabet;
+            alphabetNew.remove("ε");
+
+            //Print Columns:-----------
+            table1.addColumn("𝛿NFA");
+            for(int i = 0; i< alphabetNew.size(); i++){
+                table1.addColumn(alphabetNew.get(i)); // add alphabet columns
+            }
+
+            //Print Rows:--------------
+
+            for(int z = 0; z< states.size(); z++){
+
+                String currentState = states.get(z);// A
+                String [] currentDvalues = dArray.get(z); // [0A,1B]
+
+                String[] rowPrint = new String[alphabet.size()+1];
+
+                if(z == 0){
+                    rowPrint[0]= ">" + currentState;
+                }else{
+                    rowPrint[0]=currentState;
+                }
+
+                for(int i = 0; i< alphabetNew.size(); i++){
+                    String currentValue = "";
+                    String currentAlphabet = alphabetNew.get(i); // holds current alphabet 0
+
+                    for(int v = 0; v< currentDvalues.length; v++){ //Loop in state Values
+                        if(currentDvalues[v].length() > 1){ // Current value : 0A
+                            String currentdValue = String.valueOf(currentDvalues[v].charAt(0)); // holds 0
+                            if(currentdValue.equals(currentAlphabet)){
+                                currentValue += String.valueOf(currentDvalues[v].charAt(1));
+
+                                // check B if it has the alhpabet if yes add it
+                                ArrayList<String> valueOfState = new ArrayList<>(); //holds B values [0A|C]
+                                String newState = String.valueOf(currentDvalues[v].charAt(1));
+
+                                int cIndex = states.indexOf(newState);
+                                String [] newDArray = dArray.get(cIndex);
+                                for(String value:newDArray) {valueOfState.add(value);}
+
+                                // check if b has the value and include it
+                                for(int u = 0; u < valueOfState.size(); u++){
+                                    if(valueOfState.get(u).length() == 1 && !valueOfState.get(u).equals("ε")){
+                                        currentValue += valueOfState.get(u);
+                                    }
+                                }
+
+                            }
+
+                        }else{ //B or ε
+
+                            String epCheck = String.valueOf(currentDvalues[v].charAt(0));
+                            if(!epCheck.equals("ε")){
+                                // check B if it has the alhpabet if yes add it
+                                ArrayList<String> valueOfState = new ArrayList<>(); //holds B values [0A|C]
+                                String newState = String.valueOf(currentDvalues[v].charAt(0));
+
+                                int cIndex = states.indexOf(newState);
+                                String [] newDArray = dArray.get(cIndex);
+                                for(String value:newDArray) {valueOfState.add(value);}
+
+                                System.out.println("valueOfState: " + valueOfState);
+                                // check if b has the value and include it
+                                for(int u = 0; u < valueOfState.size(); u++){
+                                    if(valueOfState.get(u).length() == 1 && !valueOfState.get(u).equals("ε")){
+                                        currentValue += valueOfState.get(u);
+                                    }else{
+                                        String newCheck = String.valueOf(valueOfState.get(u).charAt(0));
+                                        System.out.println("newCheck: " + newCheck);
+                                        System.out.println("currentAlphabet: " + currentAlphabet);
+                                        if(newCheck.equals(currentAlphabet) ){
+                                            currentValue += String.valueOf(valueOfState.get(u).charAt(1));
+                                        }
+
+                                    }
+                                }
+
+                                //currentValue += String.valueOf(currentDvalues[v].charAt(0));
+
+                            }else{
+                                rowPrint[0]= "*" + currentState;
+                            }
+
+                        }
+                    }
+
+                    //Add current value to row
+                    if(currentValue.equals("")){
+                        rowPrint[i+1]= "Ø";
+                    }else{
+                        rowPrint[i+1]= setFormatter(currentValue);
+                    }
+
+                }
+
+                table1.addRow(rowPrint);
+
+            }
+
+        }
+
+    }//GEN-LAST:event_rgToNFANoEpsilonButtonActionPerformed
+
+    //convert RG To NFA
+    private void rgToNFAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgToNFAButtonActionPerformed
+
+        DefaultTableModel table1 = (DefaultTableModel) jTable1.getModel(); //table initializer
+
+        if(InputTextAreaChecker()){
+
+            //Print in table:-----------------------------
+
+            //Print Columns:-----------
+            table1.addColumn("𝛿NFA");
+            for(int i = 0; i< alphabet.size(); i++){
+                table1.addColumn(alphabet.get(i)); // add alphabet columns
+            }
+
+            //Print Rows:--------------
+
+            for(int z = 0; z< states.size(); z++){
+
+                String currentState = states.get(z);// A
+                String [] currentDvalues = dArray.get(z); // [0A,1B]
+
+                String[] rowPrint = new String[alphabet.size()+1];
+
+                if(z == 0){
+                    rowPrint[0]= ">" + currentState;
+                }else{
+                    rowPrint[0]=currentState;
+                }
+
+                for(int i = 0; i< alphabet.size(); i++){
+                    String currentValue = "";
+                    String currentAlphabet = alphabet.get(i); // holds current alphabet 0
+
+                    for(int v = 0; v< currentDvalues.length; v++){ //Loop in state Values
+                        if(currentDvalues[v].length() > 1){ // Current value : 0A
+                            String currentdValue = String.valueOf(currentDvalues[v].charAt(0)); // holds 0
+                            if(currentdValue.equals(currentAlphabet)){
+                                currentValue += String.valueOf(currentDvalues[v].charAt(1));
+                            }
+
+                        }else{ //B
+                            if(currentAlphabet.equals("ε")){
+                                String epCheck = String.valueOf(currentDvalues[v].charAt(0));
+                                if(!epCheck.equals("ε")){
+                                    currentValue += String.valueOf(currentDvalues[v].charAt(0));
+                                }else{
+                                    rowPrint[0]= "*" + currentState;
+                                }
+
+                            }
+                        }
+                    }
+
+                    //Add current value to row
+                    if(currentValue.equals("")){
+                        rowPrint[i+1]= "Ø";
+                    }else{
+                        rowPrint[i+1]= setFormatter(currentValue);
+                    }
+
+                }
+
+                table1.addRow(rowPrint);
+
+            }
+
+        }
+
+    }//GEN-LAST:event_rgToNFAButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+
+        clearAll();
+    }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void importButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importButtonActionPerformed
+        // TODO add your handling code here:
+
+        displayImportText="";
+        inputTextArea.setText(displayImportText);
+
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+            String line;
+            while((line = reader.readLine()) != null){
+                input.add(line);
+                displayImportText += line + "\n";
+            }
+            //        System.out.println("displayImportText: " + displayImportText);
+            inputTextArea.setText(displayImportText);
+            reader.close();
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_importButtonActionPerformed
+
+    private void testStringsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testStringsButtonActionPerformed
+        // TODO add your handling code here:
+         stringTextArea.setVisible(true);
+         checkStringButton.setVisible(true);
+    }//GEN-LAST:event_testStringsButtonActionPerformed
+
+    
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -778,6 +848,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel HomePageFrame;
     private javax.swing.JTabbedPane TabbedPaneContainer;
     private javax.swing.JButton arrowButton;
+    private javax.swing.JButton checkStringButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton epsilonButton;
     private javax.swing.JTextArea helpTextArea;
@@ -788,9 +859,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel leaderLabel;
     private javax.swing.JLabel line1Label;
@@ -810,6 +885,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton rgToMinDFAButton;
     private javax.swing.JButton rgToNFAButton;
     private javax.swing.JButton rgToNFANoEpsilonButton;
+    private javax.swing.JTextArea stringTextArea;
     private javax.swing.JButton testStringsButton;
     // End of variables declaration//GEN-END:variables
 }
