@@ -266,7 +266,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         partPercentLabel5.setText("Participation: X%");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/faconverter/images/ahmed_1_150x150.jpeg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/faconverter/images/ahmet_150x150.jpeg"))); // NOI18N
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/faconverter/images/abdul_150x150.jpeg"))); // NOI18N
 
