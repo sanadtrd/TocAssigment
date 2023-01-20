@@ -26,10 +26,6 @@ public class MainFrame extends javax.swing.JFrame {
     
     private String finalRGText; //gets final text from text area
     private String[] finalRG; // converts final text to an array
-    
-    
-    
-    
 
     private String currentLine;
     
@@ -37,9 +33,6 @@ public class MainFrame extends javax.swing.JFrame {
     
     private String initialState;
     
-    
-    
-
 
 
     /**
@@ -553,18 +546,52 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void checkStringButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkStringButtonActionPerformed
         // TODO add your handling code here:
-
         //get Strings:
         String[] stringsToCheck =  stringTextArea.getText().split("\n");
-        boolean[] stringsToCheckFlags  = new boolean[stringsToCheck.length];
 
         if(InputTextAreaChecker()){
-            if(stringsToCheck.length < 5){
-                JOptionPane.showMessageDialog(rootPane,"You have to enter minimum 5 strings at once!!");
+//            if(stringsToCheck.length < 5){
+//                JOptionPane.showMessageDialog(rootPane,"You have to enter minimum 5 strings at once!!");
+//
+//            }else{} //strings are okay
+                
+              //place it inside else:
+              for ( int i =0; i< stringsToCheck.length;i++){// for every string
+                boolean stringValidity = false;
+                String currentString = stringsToCheck[i]; //1111
+                String[] currentTransitions = dArray.get(0);// initial state: 0B|1C
+                String currentState;
+                 for ( int c =0; c< currentString.length();c++){ // loop in 1111
+                    String currentChar =  String.valueOf(currentString.charAt(c)); //1
 
-            }else{ //strings are okay
+                    for ( int x =0; x< currentTransitions.length;x++){ 
+                        if(currentTransitions[x].contains(currentChar)){
+                           currentState = String.valueOf(currentTransitions[x].charAt(1));
+                           currentTransitions = dArray.get(states.indexOf(currentState));
+                           stringValidity = true;
+                        }else{
+                           stringValidity = false;
+                        }
+                    }
+  
+                 }
+                 
+                 //print string checking:
+                 if(i==0){
+                    stringTextArea.setText("");
+                 }
+                 
+                 String currentStringTextAreatext = stringTextArea.getText();
+                 
+                 if(stringValidity){ //true
+                     stringTextArea.setText(currentStringTextAreatext + stringsToCheck[i] + " OK" + "\n");
+                 }else{//false
+                     stringTextArea.setText(currentStringTextAreatext + stringsToCheck[i] + " NO" + "\n");
+                 }
+   
+              }
 
-            }
+            
 
         }
     }//GEN-LAST:event_checkStringButtonActionPerformed
@@ -802,6 +829,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
          stringTextArea.setVisible(true);
          checkStringButton.setVisible(true);
+         stringTextArea.setText("ε" + "\n" + "1111" + "\n" + "10101010" + "\n" + "0101010" + "\n" + "1");
     }//GEN-LAST:event_testStringsButtonActionPerformed
 
     
