@@ -561,16 +561,16 @@ public class MainFrame extends javax.swing.JFrame {
                 boolean stringValidity = false;
                 String currentString = stringsToCheck[i]; //1111 
                 String[] currentTransitions = dArray.get(0);// initial state: 0B|1C
-                String currentState;
+                String currentState = "";
                 
-//                if(i==4){
+//                if(i==3){
 //                        System.out.println( "currentTransitions: "+ Arrays.toString(currentTransitions) ); 
 //                }
                 
                  for ( int c =0; c< currentString.length();c++){ // loop in 1111 
                     String currentChar =  String.valueOf(currentString.charAt(c)); //1
                     
-//                    if(i==4){
+//                    if(i==3){
 //                        System.out.println( "currentChar: "+ currentChar ); 
 //                       
 //                    }
@@ -580,22 +580,47 @@ public class MainFrame extends javax.swing.JFrame {
                            currentState = String.valueOf(currentTransitions[x].charAt(1));
                            currentTransitions = dArray.get(states.indexOf(currentState));
                            stringValidity = true;
+                           
                            //final state check
-                           if(c == currentString.length()-1 && finalStates.contains(currentState) ){
-                               stringValidity = true;
-//                                System.out.println( "currentState: "+ currentState ); 
-                           }else{
-                                stringValidity = false;
-                           }
+                           if(c == currentString.length()-1 ){
+                               
+                            if( finalStates.contains(currentState)){ // if current state is final like: B
+                                stringValidity = true;  
+                            }else{
+                                if(i==3){
+                            System.out.println( "1 currentState: "+ currentState );
+                            System.out.println( "1 currentTransitions: "+ Arrays.toString(currentTransitions) );
+                            }
+                                // if state has Epsilon to final like: c->B
+                                for (int z=0; z< currentTransitions.length;z++){
+                                    if(currentTransitions[z].length() == 1 && finalStates.contains(currentTransitions[z])){
+                                         stringValidity = true;
+                                         break;
+                                    }else{
+                                        stringValidity = false;
+                                    }
+                                }
+                                
+                                
+      
+                            }
+//                            if(i==3){
+//                            System.out.println( "currentState: "+ currentState );
+//                            }
+                            
+                        }
                            break;
                         }else{
                             stringValidity = false;
                         }
+                        
+                         
                     }
                     
-//                    if(i==4){
+                    
+//                    if(i==3){
 //                       System.out.println( "currentTransitions: "+ Arrays.toString(currentTransitions) ); 
-//                       //System.out.println( "currentState: "+ currentState ); 
+//                      //System.out.println( "currentState: "+ currentState ); 
 //                    }
                     
                     
