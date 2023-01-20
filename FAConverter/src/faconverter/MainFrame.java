@@ -550,29 +550,55 @@ public class MainFrame extends javax.swing.JFrame {
         String[] stringsToCheck =  stringTextArea.getText().split("\n");
 
         if(InputTextAreaChecker()){
-//            if(stringsToCheck.length < 5){
-//                JOptionPane.showMessageDialog(rootPane,"You have to enter minimum 5 strings at once!!");
-//
-//            }else{} //strings are okay
+          if(stringsToCheck.length < 5){
+                JOptionPane.showMessageDialog(rootPane,"You have to enter minimum 5 strings at once!!");
+
+            }else{
                 
               //place it inside else:
               for ( int i =0; i< stringsToCheck.length;i++){// for every string
+                  
                 boolean stringValidity = false;
-                String currentString = stringsToCheck[i]; //1111
+                String currentString = stringsToCheck[i]; //1111 
                 String[] currentTransitions = dArray.get(0);// initial state: 0B|1C
                 String currentState;
-                 for ( int c =0; c< currentString.length();c++){ // loop in 1111
+                
+//                if(i==4){
+//                        System.out.println( "currentTransitions: "+ Arrays.toString(currentTransitions) ); 
+//                }
+                
+                 for ( int c =0; c< currentString.length();c++){ // loop in 1111 
                     String currentChar =  String.valueOf(currentString.charAt(c)); //1
-
-                    for ( int x =0; x< currentTransitions.length;x++){ 
+                    
+//                    if(i==4){
+//                        System.out.println( "currentChar: "+ currentChar ); 
+//                       
+//                    }
+                    
+                    for ( int x =0; x < currentTransitions.length;x++){ 
                         if(currentTransitions[x].contains(currentChar)){
                            currentState = String.valueOf(currentTransitions[x].charAt(1));
                            currentTransitions = dArray.get(states.indexOf(currentState));
                            stringValidity = true;
+                           //final state check
+                           if(c == currentString.length()-1 && finalStates.contains(currentState) ){
+                               stringValidity = true;
+//                                System.out.println( "currentState: "+ currentState ); 
+                           }else{
+                                stringValidity = false;
+                           }
+                           break;
                         }else{
-                           stringValidity = false;
+                            stringValidity = false;
                         }
                     }
+                    
+//                    if(i==4){
+//                       System.out.println( "currentTransitions: "+ Arrays.toString(currentTransitions) ); 
+//                       //System.out.println( "currentState: "+ currentState ); 
+//                    }
+                    
+                    
   
                  }
                  
@@ -591,6 +617,7 @@ public class MainFrame extends javax.swing.JFrame {
    
               }
 
+    }
             
 
         }
@@ -830,6 +857,7 @@ public class MainFrame extends javax.swing.JFrame {
          stringTextArea.setVisible(true);
          checkStringButton.setVisible(true);
          stringTextArea.setText("ε" + "\n" + "1111" + "\n" + "10101010" + "\n" + "0101010" + "\n" + "1");
+         //stringTextArea.setText("ε" + "\n" + "aaa" + "\n" + "bbbb" + "\n" + "abbbbab" + "\n" + "aab");
     }//GEN-LAST:event_testStringsButtonActionPerformed
 
     

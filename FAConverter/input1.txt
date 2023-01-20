@@ -1,4 +1,0 @@
-A→aR
-R→bR|aS
-S→bT
-T→R|ε
