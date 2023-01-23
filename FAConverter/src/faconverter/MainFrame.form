@@ -190,7 +190,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="partPercentLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Participation: X%"/>
+                <Property name="text" type="java.lang.String" value="Participation: 30%"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -230,12 +230,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="partPercentLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Participation: X%"/>
+                <Property name="text" type="java.lang.String" value="Participation: 40%"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="partPercentLabel5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Participation: X%"/>
+                <Property name="text" type="java.lang.String" value="Participation: 30%"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
@@ -537,7 +537,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="How to use the program:&#xa;&#xa;1.RG to NFA:&#xa;    - In order for the program to convert RG to NFA the user have to:&#xa;    - Enter min 3 alphabet including epsilon (&#x3b5;) example: a,b,&#x3b5;&#xa;    - Enter each state in new line and State Letter must be followed by arrow (User can use arrow button on left side) then directions&#xa;    - example: R (arrow) bR|aS (if user wishes to enter multiple directions | must be used)&#xa;    - User must click Convert RG To NFA button&#xa;&#xa;2. RG to NFA without epsilon:&#xa;    - In order for the program to convert RG to NFA without &#x3b5; the user have to:&#xa;    - Enter min 3 alphabet including epsilon (&#x3b5;) example: a,b,&#x3b5;&#xa;    - Enter each state in new line and State Letter must be followed by arrow (User can use arrow button on left side) then directions&#xa;    - example: R (arrow) bR|aS (if user wishes to enter multiple directions | must be used)&#xa;    - User must click To NFA without &#x3b5; button&#xa;&#xa;5. Check strings for RG:&#xa;    - The user needs to enter the regular grammar as right regular, the transition symbol that should be used is (arrow) and epsilon (&#x3b5;)&#xa;    - Using only the regular grammar alphabet, the user can enter the strings to check, minimum 5 strings."/>
+                    <Property name="text" type="java.lang.String" value="How to use the program:&#xa;&#xa;1.RG to NFA:&#xa;    - In order to import from a file please edit input.txt&#xa;    - In order for the program to convert RG to NFA the user have to:&#xa;    - Enter min 3 alphabet including epsilon (&#x3b5;) example: a,b,&#x3b5;&#xa;    - Enter each state in new line and State Letter must be followed by arrow (User can use arrow button on left side) then directions&#xa;    - example: A (arrow) 1B|0C (if user wishes to enter multiple directions | must be used)&#xa;    - User must click Convert RG To NFA button&#xa;&#xa;2. RG to NFA without epsilon:&#xa;    - In order for the program to convert RG to NFA without &#x3b5; the user have to:&#xa;    - Enter min 3 alphabet including epsilon (&#x3b5;) example: a,b,&#x3b5;&#xa;    - Enter each state in new line and State Letter must be followed by arrow (User can use arrow button on left side) then directions&#xa;    - example: A (arrow) 1B|0C (if user wishes to enter multiple directions | must be used)&#xa;    - User must click To NFA without &#x3b5; button&#xa;&#xa;3. Check strings for RG:&#xa;    - The user needs to enter the regular grammar as right regular, the transition symbol that should be used is (arrow) and epsilon (&#x3b5;)&#xa;    - Using only the regular grammar alphabet, the user can enter the strings to check, minimum 5 strings."/>
                   </Properties>
                 </Component>
               </SubComponents>

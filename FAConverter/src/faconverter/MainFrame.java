@@ -153,7 +153,7 @@ public class MainFrame extends javax.swing.JFrame {
              outputTextAreaText += "p0="+initialState+"\n";
              
              //Final States:
-             outputTextAreaText += "Q=";
+             outputTextAreaText += "F=";
              String f = finalStates.toString().replace('[', '{').replace(']', '}')+"\n";
              outputTextAreaText += f;
     
@@ -239,7 +239,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         leaderLabel.setText("Leader");
 
-        partPercentLabel1.setText("Participation: X%");
+        partPercentLabel1.setText("Participation: 30%");
 
         jLabel1.setText("Abdulrahman Ibrahim  Obeidallah");
 
@@ -255,9 +255,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         nameLabel6.setText("Member 3");
 
-        partPercentLabel4.setText("Participation: X%");
+        partPercentLabel4.setText("Participation: 40%");
 
-        partPercentLabel5.setText("Participation: X%");
+        partPercentLabel5.setText("Participation: 30%");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/faconverter/images/ahmet_150x150.jpeg"))); // NOI18N
 
@@ -512,7 +512,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         helpTextArea.setColumns(20);
         helpTextArea.setRows(5);
-        helpTextArea.setText("How to use the program:\n\n1.RG to NFA:\n    - In order for the program to convert RG to NFA the user have to:\n    - Enter min 3 alphabet including epsilon (ε) example: a,b,ε\n    - Enter each state in new line and State Letter must be followed by arrow (User can use arrow button on left side) then directions\n    - example: R (arrow) bR|aS (if user wishes to enter multiple directions | must be used)\n    - User must click Convert RG To NFA button\n\n2. RG to NFA without epsilon:\n    - In order for the program to convert RG to NFA without ε the user have to:\n    - Enter min 3 alphabet including epsilon (ε) example: a,b,ε\n    - Enter each state in new line and State Letter must be followed by arrow (User can use arrow button on left side) then directions\n    - example: R (arrow) bR|aS (if user wishes to enter multiple directions | must be used)\n    - User must click To NFA without ε button\n\n5. Check strings for RG:\n    - The user needs to enter the regular grammar as right regular, the transition symbol that should be used is (arrow) and epsilon (ε)\n    - Using only the regular grammar alphabet, the user can enter the strings to check, minimum 5 strings.");
+        helpTextArea.setText("How to use the program:\n\n1.RG to NFA:\n    - In order to import from a file please edit input.txt\n    - In order for the program to convert RG to NFA the user have to:\n    - Enter min 3 alphabet including epsilon (ε) example: a,b,ε\n    - Enter each state in new line and State Letter must be followed by arrow (User can use arrow button on left side) then directions\n    - example: A (arrow) 1B|0C (if user wishes to enter multiple directions | must be used)\n    - User must click Convert RG To NFA button\n\n2. RG to NFA without epsilon:\n    - In order for the program to convert RG to NFA without ε the user have to:\n    - Enter min 3 alphabet including epsilon (ε) example: a,b,ε\n    - Enter each state in new line and State Letter must be followed by arrow (User can use arrow button on left side) then directions\n    - example: A (arrow) 1B|0C (if user wishes to enter multiple directions | must be used)\n    - User must click To NFA without ε button\n\n3. Check strings for RG:\n    - The user needs to enter the regular grammar as right regular, the transition symbol that should be used is (arrow) and epsilon (ε)\n    - Using only the regular grammar alphabet, the user can enter the strings to check, minimum 5 strings.");
         jScrollPane1.setViewportView(helpTextArea);
 
         javax.swing.GroupLayout HelpPageFrameLayout = new javax.swing.GroupLayout(HelpPageFrame);
@@ -555,7 +555,6 @@ public class MainFrame extends javax.swing.JFrame {
 
             }else{
                 
-              //place it inside else:
               for ( int i =0; i< stringsToCheck.length;i++){// for every string
                   
                 boolean stringValidity = false;
@@ -587,10 +586,10 @@ public class MainFrame extends javax.swing.JFrame {
                             if( finalStates.contains(currentState)){ // if current state is final like: B
                                 stringValidity = true;  
                             }else{
-                                if(i==3){
-                            System.out.println( "1 currentState: "+ currentState );
-                            System.out.println( "1 currentTransitions: "+ Arrays.toString(currentTransitions) );
-                            }
+//                                if(i==3){
+//                            System.out.println( "1 currentState: "+ currentState );
+//                            System.out.println( "1 currentTransitions: "+ Arrays.toString(currentTransitions) );
+//                            }
                                 // if state has Epsilon to final like: c->B
                                 for (int z=0; z< currentTransitions.length;z++){
                                     if(currentTransitions[z].length() == 1 && finalStates.contains(currentTransitions[z])){
